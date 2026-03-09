@@ -1,0 +1,25 @@
+{
+  "name": "notebook-cell-numbers",
+  "displayName": "Notebook Cell Numbers",
+  "description": "Shows sequential cell numbers (Cell 1, Cell 2, ...) in the status bar of Jupyter notebook code cells",
+  "version": "0.1.0",
+  "publisher": "kerekes",
+  "engines": {
+    "vscode": "^1.56.0"
+  },
+  "categories": ["Notebooks"],
+  "activationEvents": [
+    "onNotebook:jupyter-notebook"
+  ],
+  "main": "./dist/extension.js",
+  "scripts": {
+    "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "package": "npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.56.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.0.0"
+  }
+}
