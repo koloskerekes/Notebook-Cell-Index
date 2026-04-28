@@ -4,6 +4,11 @@ All notable changes to **Notebook Cell Index** are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2] - 2026-04-28
+
+### Changed
+- Settings UI now displays options in a deliberate order (`format`, `customFormat`, `showTotal`, `alignment`, `hideWhenSingle`, `showCodeNumbers`, `showMarkdownNumbers`, `resetCounterOnSection`) instead of alphabetical, so the custom-format template sits next to the preset it overrides.
+
 ## [0.3.1] - 2026-04-28
 
 ### Removed
