@@ -1,7 +1,7 @@
 # Notebook Cell Index
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/KolosKerekes.notebook-cell-index?label=VS%20Marketplace&color=007ACC)](https://marketplace.visualstudio.com/items?itemName=KolosKerekes.notebook-cell-index)
-[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/KolosKerekes.notebook-cell-index)](https://marketplace.visualstudio.com/items?itemName=KolosKerekes.notebook-cell-index)
+[![Visual Studio Marketplace Version](https://vsmarketplacebadges.dev/version-short/KolosKerekes.notebook-cell-index.svg?label=VS%20Marketplace&color=007ACC)](https://marketplace.visualstudio.com/items?itemName=KolosKerekes.notebook-cell-index)
+[![Visual Studio Marketplace Installs](https://vsmarketplacebadges.dev/installs-short/KolosKerekes.notebook-cell-index.svg)](https://marketplace.visualstudio.com/items?itemName=KolosKerekes.notebook-cell-index)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Display sequential cell numbers (`Cell 1`, `Cell 2`, ...) in the status bar of every notebook cell in VS Code. Lightweight, zero-dependency, works with Jupyter notebooks and any other notebook-based editor.
