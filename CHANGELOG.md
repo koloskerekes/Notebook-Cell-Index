@@ -4,6 +4,19 @@ All notable changes to **Notebook Cell Index** are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-04-28
+
+### Added
+- **Click-to-jump cell picker.** Click any cell-number badge to open a quick-pick of all numbered cells. Arrow keys live-preview by scrolling to each cell; Enter focuses it; Escape restores the original view. Toggle via `notebookCellIndex.clickToJump`.
+- **Active-cell status bar item.** A `Cell N` indicator in the window status bar (bottom right) tracks the focused cell across the whole notebook. Click to open the cell picker. Toggle via `notebookCellIndex.showGlobalStatusItem`.
+- **`Jump to Cell…` command** (`notebookCellIndex.openCellPicker`) on the command palette.
+- **`Copy Cell Reference` command** (`notebookCellIndex.copyCellReference`) on the command palette. Puts the rendered label (e.g. `Cell 7`, `2.3`, `In[12]`) on the clipboard.
+- **`{exec}` token** for `customFormat`. Resolves to the cell's execution counter (`In[N]`); cells without an execution count are hidden when the template uses `{exec}`. Use `customFormat: "In[{exec}]"` for Jupyter-style numbering.
+
+### Changed
+- Tooltip on each cell badge now hints that it's clickable when `clickToJump` is on.
+- Provider re-fires when execution counters change so `{exec}` templates stay current.
+
 ## [0.3.2] - 2026-04-28
 
 ### Changed
