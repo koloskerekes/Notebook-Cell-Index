@@ -54,11 +54,18 @@ function isHeading(cell: vscode.NotebookCell, mode: ResetMode): boolean {
   return mode === 'h1' ? /^#\s/.test(text) : /^#{1,2}\s/.test(text);
 }
 
+function extractHeadingTitle(cell: vscode.NotebookCell): string {
+  if (cell.kind !== vscode.NotebookCellKind.Markup) return '';
+  const firstNonEmpty = cell.document.getText().split('\n').find(l => l.trim().length > 0) ?? '';
+  return firstNonEmpty.replace(/^\s*#{1,6}\s+/, '').trim();
+}
+
 interface Pos {
   n: number;
   section: number;
   sectionTotal: number;
   total: number;
+  sectionTitle: string;
 }
 
 function computePosition(target: vscode.NotebookCell, cfg: Cfg): Pos | undefined {
@@ -69,7 +76,9 @@ function computePosition(target: vscode.NotebookCell, cfg: Cfg): Pos | undefined
   let total = 0;
   let found: { n: number; section: number } | undefined;
   const sectionTotals: number[] = [];
+  const sectionTitles: string[] = [];
   sectionTotals[1] = 0;
+  sectionTitles[1] = '';
 
   for (const c of cells) {
     if (isHeading(c, cfg.resetMode)) {
@@ -79,6 +88,7 @@ function computePosition(target: vscode.NotebookCell, cfg: Cfg): Pos | undefined
       }
       firstHeadingSeen = true;
       sectionN = 0;
+      sectionTitles[section] = extractHeadingTitle(c);
     }
     if (counts(c, cfg)) {
       sectionN++;
@@ -95,6 +105,7 @@ function computePosition(target: vscode.NotebookCell, cfg: Cfg): Pos | undefined
     n: found.n,
     section: found.section,
     sectionTotal: sectionTotals[found.section] ?? found.n,
+    sectionTitle: sectionTitles[found.section] ?? '',
     total,
   };
 }
@@ -115,6 +126,7 @@ function formatLabel(template: string, pos: Pos, cell: vscode.NotebookCell): str
     .replace(/\{n\}/g, String(pos.n))
     .replace(/\{grandTotal\}/g, String(pos.total))
     .replace(/\{total\}/g, String(pos.sectionTotal))
+    .replace(/\{sectionTitle\}/g, pos.sectionTitle)
     .replace(/\{section\}/g, String(pos.section))
     .replace(/\{kind\}/g, kind)
     .replace(/\{exec\}/g, execStr);

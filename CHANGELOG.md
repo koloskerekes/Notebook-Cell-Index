@@ -4,6 +4,14 @@ All notable changes to **Notebook Cell Index** are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-04-28
+
+### Added
+- **`{sectionTitle}` token** for `customFormat`. Resolves to the heading text of the markdown cell that opened the current section (with `#` stripped). Use `customFormat: "{sectionTitle} · {n}"` to render labels like `Data loading · 4` instead of bare numbers. Requires `resetCounterOnSection`.
+
+### Changed
+- Marketplace summary, README intro, and keyword list refreshed to reflect everything shipped through v0.4.0 (click-to-jump, status bar item, custom templates, execution numbering, copy-reference command, section resets) plus the new `{sectionTitle}` token.
+
 ## [0.4.0] - 2026-04-28
 
 ### Added

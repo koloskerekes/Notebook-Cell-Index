@@ -4,7 +4,7 @@
 [![Visual Studio Marketplace Installs](https://vsmarketplacebadges.dev/installs-short/KolosKerekes.notebook-cell-index.svg)](https://marketplace.visualstudio.com/items?itemName=KolosKerekes.notebook-cell-index)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Display sequential cell numbers (`Cell 1`, `Cell 2`, ...) in the status bar of every notebook cell in VS Code. Lightweight, zero-dependency, works with Jupyter notebooks and any other notebook-based editor.
+Number every cell of every notebook in VS Code. Click any badge to jump across the notebook with live preview, watch the active cell in the bottom status bar, build your own label format (`Cell 7`, `2.3`, `In[12]`, `Data loading · 4`), restart counters at section headings, and copy a cell reference to the clipboard for chat or PRs. Lightweight, zero runtime dependencies — works with Jupyter, polyglot notebooks, and any custom notebook controller.
 
 ## Features
 
@@ -60,6 +60,7 @@ The `customFormat` template supports:
 | `{total}` | Total cells in the current section (or whole notebook if reset is `none`) |
 | `{grandTotal}` | Total across the whole notebook |
 | `{section}` | 1-based section number (when reset is enabled) |
+| `{sectionTitle}` | Heading text of the markdown cell that opened the current section (with `#` stripped). Empty for cells before the first heading. Requires `resetCounterOnSection`. |
 | `{kind}` | `Code` or `Markdown` |
 | `{exec}` | Cell's execution counter (`In[N]`). Cells without an execution count are hidden when this token is used. |
 
@@ -72,6 +73,7 @@ Examples:
 | `{section}.{n}` | `2.3` |
 | `[{kind} {n}]` | `[Code 7]` |
 | `In[{exec}]` | `In[12]` (Jupyter-style; un-executed cells hide) |
+| `{sectionTitle} · {n}` | `Data loading · 4` (uses the `# Data loading` heading text) |
 
 ## Commands
 
