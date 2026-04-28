@@ -33,9 +33,36 @@ code --install-extension notebook-cell-index-<version>.vsix
 
 | Setting | Type | Default | Description |
 | --- | --- | --- | --- |
-| `notebookCellIndex.format` | `"Cell N"` \| `"#N"` \| `"[N]"` | `"Cell N"` | Label format for cell numbers. |
-| `notebookCellIndex.showTotal` | boolean | `false` | Show total count alongside the index (e.g. `Cell 2/5`). |
-| `notebookCellIndex.includeMarkdownCells` | boolean | `false` | Include markdown cells in numbering. When enabled, markdown cells also display a number and count toward the total. |
+| `notebookCellIndex.format` | `"Cell N"` \| `"#N"` \| `"[N]"` | `"Cell N"` | Preset label format. Ignored when `customFormat` is set. |
+| `notebookCellIndex.customFormat` | string | `""` | Custom label template, e.g. `"Cell {n}/{total}"`, `"{section}.{n}"`. |
+| `notebookCellIndex.showTotal` | boolean | `false` | Append the total count to the index (e.g. `Cell 2/5`). |
+| `notebookCellIndex.alignment` | `"left"` \| `"right"` | `"left"` | Which side of the cell status bar the badge sits on. |
+| `notebookCellIndex.hideWhenSingle` | boolean | `false` | Hide the badge on notebooks with 0 or 1 displayed cells. |
+| `notebookCellIndex.showCodeNumbers` | boolean | `true` | Number code cells. |
+| `notebookCellIndex.showMarkdownNumbers` | boolean | `false` | Number markdown cells (replaces the legacy `includeMarkdownCells`). |
+| `notebookCellIndex.resetCounterOnSection` | `"none"` \| `"h1"` \| `"h1-h2"` | `"none"` | Restart the counter at every H1 / H1+H2 markdown cell. |
+
+### Custom format tokens
+
+The `customFormat` template supports:
+
+| Token | Meaning |
+| --- | --- |
+| `{n}` | 1-based index within the current section |
+| `{n0}` | 0-based index |
+| `{total}` | Total cells in the current section (or whole notebook if reset is `none`) |
+| `{grandTotal}` | Total across the whole notebook |
+| `{section}` | 1-based section number (when reset is enabled) |
+| `{kind}` | `Code` or `Markdown` |
+
+Examples:
+
+| Template | Result |
+| --- | --- |
+| `Cell {n}` | `Cell 7` |
+| `Cell {n}/{total}` | `Cell 7/12` |
+| `{section}.{n}` | `2.3` |
+| `[{kind} {n}]` | `[Code 7]` |
 
 Open settings with `Ctrl+,` and search for `notebookCellIndex`.
 

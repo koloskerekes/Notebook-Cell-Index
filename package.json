@@ -1,8 +1,8 @@
 {
   "name": "notebook-cell-index",
   "displayName": "Notebook Cell Index",
-  "description": "Shows sequential cell numbers (Cell 1, Cell 2, ...) in the status bar of notebook cells. Optionally includes markdown cells in the numbering.",
-  "version": "0.2.0",
+  "description": "Shows sequential cell numbers (Cell 1, Cell 2, ...) in the status bar of notebook cells. Custom format templates, alignment, per-kind toggles, and section-based counter resets.",
+  "version": "0.3.0",
   "publisher": "KolosKerekes",
   "license": "MIT",
   "author": {
@@ -56,17 +56,55 @@
             "Bracketed: '[1]', '[2]', ..."
           ],
           "default": "Cell N",
-          "description": "Label format for notebook cell numbers."
+          "description": "Preset label format. Ignored if `customFormat` is set."
+        },
+        "notebookCellIndex.customFormat": {
+          "type": "string",
+          "default": "",
+          "description": "Custom label template (e.g. 'Cell {n}/{total}', '{section}.{n}'). Tokens: {n}, {n0}, {total}, {grandTotal}, {section}, {kind}. Empty falls back to `format`."
         },
         "notebookCellIndex.showTotal": {
           "type": "boolean",
           "default": false,
-          "description": "Show the total cell count alongside the index (e.g. 'Cell 2/5')."
+          "description": "Show the total cell count alongside the index (e.g. 'Cell 2/5'). Has no effect if the template already contains {total}."
+        },
+        "notebookCellIndex.alignment": {
+          "type": "string",
+          "enum": ["left", "right"],
+          "default": "left",
+          "description": "Alignment of the cell-number badge in the cell status bar."
+        },
+        "notebookCellIndex.hideWhenSingle": {
+          "type": "boolean",
+          "default": false,
+          "description": "Hide the cell-number badge when the notebook has 0 or 1 displayed cells."
+        },
+        "notebookCellIndex.showCodeNumbers": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show numbering on code cells."
+        },
+        "notebookCellIndex.showMarkdownNumbers": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show numbering on markdown cells. When enabled, markdown cells receive a status-bar number and count toward the total."
+        },
+        "notebookCellIndex.resetCounterOnSection": {
+          "type": "string",
+          "enum": ["none", "h1", "h1-h2"],
+          "enumDescriptions": [
+            "Number cells continuously across the whole notebook.",
+            "Restart the counter at every H1 (`# `) markdown cell.",
+            "Restart the counter at every H1 (`# `) or H2 (`## `) markdown cell."
+          ],
+          "default": "none",
+          "description": "Restart the counter when a markdown cell starts with the configured heading level. Combine with `customFormat` and the `{section}` token to display hierarchical labels like '1.3'."
         },
         "notebookCellIndex.includeMarkdownCells": {
           "type": "boolean",
           "default": false,
-          "description": "Include markdown cells in the numbering. When enabled, markdown cells also display a number and count toward the total."
+          "deprecationMessage": "Use `notebookCellIndex.showMarkdownNumbers` instead.",
+          "description": "Legacy alias for `showMarkdownNumbers`. When the new setting is unset, this value is used as its default."
         }
       }
     }
