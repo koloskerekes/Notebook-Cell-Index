@@ -1,8 +1,8 @@
 {
   "name": "notebook-cell-index",
   "displayName": "Notebook Cell Index",
-  "description": "Number every cell of every notebook with click-to-jump navigation, an active-cell status bar indicator, custom label templates (Cell {n}, {section}.{n}, In[{exec}], {sectionTitle} · {n}), Jupyter-style execution numbering, section-aware counter resets, copy-cell-reference command, and per-kind toggles for code and markdown.",
-  "version": "0.5.2",
+  "description": "Jump anywhere in any notebook with Ctrl+K G — a live-preview cell picker. Custom-format cell badges, section-aware numbering, and shareable cell permalinks.",
+  "version": "0.5.3",
   "publisher": "KolosKerekes",
   "license": "MIT",
   "author": {
@@ -45,7 +45,11 @@
     "execution",
     "template",
     "section",
-    "polyglot"
+    "polyglot",
+    "permalink",
+    "link",
+    "share",
+    "markdown link"
   ],
   "activationEvents": [
     "onNotebook:*"
