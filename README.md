@@ -47,8 +47,8 @@ Open settings with `Ctrl+,` and search for `notebookCellIndex`.
 ## Development
 
 ```bash
-git clone https://github.com/kolos-kerekes/notebook-cell-index.git
-cd notebook-cell-index
+git clone https://github.com/koloskerekes/Notebook-Cell-Index.git
+cd Notebook-Cell-Index
 npm install
 npm run compile
 ```
@@ -69,7 +69,7 @@ npm run publish
 
 ## Contributing
 
-Issues and pull requests are welcome at [github.com/kolos-kerekes/notebook-cell-index](https://github.com/kolos-kerekes/notebook-cell-index). Please open an issue first for substantial changes.
+Issues and pull requests are welcome at [github.com/koloskerekes/Notebook-Cell-Index](https://github.com/koloskerekes/Notebook-Cell-Index). Please open an issue first for substantial changes.
 
 ## License
 
