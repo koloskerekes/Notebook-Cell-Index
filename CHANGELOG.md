@@ -4,6 +4,12 @@ All notable changes to **Notebook Cell Index** are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.2] - 2026-04-28
+
+### Added
+- **`Copy Cell Permalink` command** (`notebookCellIndex.copyCellPermalink`). Copies the cell label together with a notebook reference, so a paste in chat or a PR comment is unambiguous when multiple notebooks are in play. Default output is a Markdown link `[Cell 7](path/to/notebook.ipynb)`.
+- **`notebookCellIndex.permalinkFormat` setting.** Template with tokens `{ref}` (rendered cell label), `{filename}`, `{relpath}` (path relative to the workspace folder), `{path}` (absolute). Untitled notebooks and notebooks outside the workspace fall back to the filename for `{relpath}`.
+
 ## [0.5.1] - 2026-04-28
 
 ### Added

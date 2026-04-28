@@ -16,6 +16,7 @@ Number every cell of every notebook in VS Code. Click any badge to jump across t
 - **Per-kind toggles** — number code cells, markdown cells, both, or either
 - **Execution-order numbering** — `{exec}` token mirrors Jupyter's `In[N]`
 - **Copy Cell Reference** command — drop `Cell 7` (or `2.3`, or `In[12]`) on the clipboard for chat / PRs
+- **Copy Cell Permalink** command — copy a notebook-aware reference like `[Cell 7](analysis/inventory.ipynb)`, configurable template
 - **Three preset label styles** — `Cell N`, `#N`, or `[N]`, plus your own template
 - **Live updates** — numbers re-flow as cells are added, removed, reordered, or executed
 - **Works everywhere** — Jupyter, polyglot notebooks, custom notebook controllers
@@ -48,6 +49,7 @@ code --install-extension notebook-cell-index-<version>.vsix
 | `notebookCellIndex.resetCounterOnSection` | `"none"` \| `"h1"` \| `"h1-h2"` | `"none"` | Restart the counter at every H1 / H1+H2 markdown cell. |
 | `notebookCellIndex.clickToJump` | boolean | `true` | Make each cell's badge clickable to open the cell picker. |
 | `notebookCellIndex.showGlobalStatusItem` | boolean | `true` | Show the active cell's number in the window status bar. |
+| `notebookCellIndex.permalinkFormat` | string | `"[{ref}]({relpath})"` | Template for `Copy Cell Permalink`. Tokens: `{ref}`, `{filename}`, `{relpath}`, `{path}`. |
 
 ### Custom format tokens
 

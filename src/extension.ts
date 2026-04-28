@@ -352,6 +352,75 @@ async function copyCellReference(arg?: unknown): Promise<void> {
   vscode.window.setStatusBarMessage(`Copied "${text}"`, 2000);
 }
 
+function toForwardSlashes(p: string): string {
+  return p.replace(/\\/g, '/');
+}
+
+function basename(p: string): string {
+  const norm = toForwardSlashes(p);
+  const i = norm.lastIndexOf('/');
+  return i >= 0 ? norm.slice(i + 1) : norm;
+}
+
+function notebookFilename(notebook: vscode.NotebookDocument): string {
+  if (notebook.isUntitled) {
+    return basename(notebook.uri.path) || 'untitled';
+  }
+  return basename(notebook.uri.fsPath);
+}
+
+function notebookRelativePath(notebook: vscode.NotebookDocument): string {
+  const filename = notebookFilename(notebook);
+  if (notebook.isUntitled) {
+    return filename;
+  }
+  const folder = vscode.workspace.getWorkspaceFolder(notebook.uri);
+  if (!folder) {
+    return filename;
+  }
+  const folderPath = toForwardSlashes(folder.uri.fsPath).replace(/\/$/, '');
+  const filePath = toForwardSlashes(notebook.uri.fsPath);
+  if (filePath.toLowerCase().startsWith(folderPath.toLowerCase() + '/')) {
+    return filePath.slice(folderPath.length + 1);
+  }
+  return filename;
+}
+
+async function copyCellPermalink(arg?: unknown): Promise<void> {
+  const cell = resolveCellArg(arg) ?? getActiveSelection()?.cell;
+  if (!cell) {
+    vscode.window.showInformationMessage('Notebook Cell Index: no active notebook cell.');
+    return;
+  }
+  const cfg = loadConfig();
+  const pos = computePosition(cell, cfg);
+  if (!pos) {
+    vscode.window.showInformationMessage('Notebook Cell Index: this cell has no number under the current settings.');
+    return;
+  }
+  const template = resolveTemplate(cfg);
+  if (templateRequiresExecution(template) && typeof cell.executionSummary?.executionOrder !== 'number') {
+    vscode.window.showInformationMessage('Notebook Cell Index: this cell has no number until it is executed.');
+    return;
+  }
+  const ref = formatLabel(template, pos, cell);
+  const filename = notebookFilename(cell.notebook);
+  const relpath = notebookRelativePath(cell.notebook);
+  const fullPath = cell.notebook.isUntitled
+    ? filename
+    : toForwardSlashes(cell.notebook.uri.fsPath);
+  const permalinkTemplate = vscode.workspace
+    .getConfiguration(NS)
+    .get<string>('permalinkFormat', '[{ref}]({relpath})');
+  const text = permalinkTemplate
+    .replace(/\{ref\}/g, ref)
+    .replace(/\{filename\}/g, filename)
+    .replace(/\{relpath\}/g, relpath)
+    .replace(/\{path\}/g, fullPath);
+  await vscode.env.clipboard.writeText(text);
+  vscode.window.setStatusBarMessage(`Copied "${text}"`, 2500);
+}
+
 class GlobalStatusItem {
   private item: vscode.StatusBarItem;
 
@@ -406,6 +475,7 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.notebooks.registerNotebookCellStatusBarItemProvider('*', provider),
     vscode.commands.registerCommand('notebookCellIndex.openCellPicker', openCellPicker),
     vscode.commands.registerCommand('notebookCellIndex.copyCellReference', copyCellReference),
+    vscode.commands.registerCommand('notebookCellIndex.copyCellPermalink', copyCellPermalink),
     vscode.workspace.onDidChangeConfiguration(e => {
       if (e.affectsConfiguration(NS)) {
         refreshAll();
