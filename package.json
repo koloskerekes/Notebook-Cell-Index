@@ -1,8 +1,8 @@
 {
   "name": "notebook-cell-index",
   "displayName": "Notebook Cell Index",
-  "description": "Jump anywhere in any notebook with Ctrl+K G — a live-preview cell picker. Custom-format cell badges, section-aware numbering, and shareable cell permalinks.",
-  "version": "0.5.3",
+  "description": "Adds a numbered index (Cell 1, Cell 2, …) to every cell in every notebook. Customizable label templates, section-aware counter resets, a live-preview cell picker, and shareable cell permalinks.",
+  "version": "0.5.4",
   "publisher": "KolosKerekes",
   "license": "MIT",
   "author": {

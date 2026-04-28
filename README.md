@@ -4,7 +4,7 @@
 [![Visual Studio Marketplace Installs](https://vsmarketplacebadges.dev/installs-short/KolosKerekes.notebook-cell-index.svg)](https://marketplace.visualstudio.com/items?itemName=KolosKerekes.notebook-cell-index)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Number every cell of every notebook in VS Code. `Ctrl+K G` (or click any badge) opens a section-grouped cell picker that live-previews as you arrow through it, while an active-cell indicator sits in the bottom status bar. Build your own label format (`Cell 7`, `2.3`, `In[12]`, `Data loading · 4`), restart counters at section headings, and copy either a bare cell reference or a notebook-aware permalink (`[Cell 7](analysis/inventory.ipynb)`) for chat and PR comments. Lightweight, zero runtime dependencies — works with Jupyter, polyglot notebooks, and any custom notebook controller.
+**Adds a numbered index (`Cell 1`, `Cell 2`, …) to every cell in every notebook.** Build your own label format (`Cell 7`, `2.3`, `In[12]`, `Data loading · 4`), restart counters at section headings, jump anywhere via a live-preview cell picker (default `Ctrl+K G`), watch the active cell in the bottom status bar, and copy either a bare reference (`Cell 7`) or a notebook-aware permalink (`[Cell 7](analysis/inventory.ipynb)`) for chat and PR comments. Lightweight, zero runtime dependencies — works with Jupyter, polyglot notebooks, and any custom notebook controller.
 
 ## Features
 
