@@ -22,7 +22,6 @@ interface Cfg {
 
 function loadConfig(): Cfg {
   const c = vscode.workspace.getConfiguration(NS);
-  const legacyMarkdown = c.get<boolean>('includeMarkdownCells', false);
   const customFormat = c.get<string>('customFormat', '').trim();
   const preset = c.get<string>('format', 'Cell N');
   const template = customFormat || LEGACY_TEMPLATES[preset] || preset;
@@ -34,7 +33,7 @@ function loadConfig(): Cfg {
     alignment,
     hideWhenSingle: c.get<boolean>('hideWhenSingle', false),
     showCodeNumbers: c.get<boolean>('showCodeNumbers', true),
-    showMarkdownNumbers: c.get<boolean>('showMarkdownNumbers', legacyMarkdown),
+    showMarkdownNumbers: c.get<boolean>('showMarkdownNumbers', false),
     resetMode: c.get<ResetMode>('resetCounterOnSection', 'none'),
     showTotal: c.get<boolean>('showTotal', false),
   };

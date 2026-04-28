@@ -39,7 +39,7 @@ code --install-extension notebook-cell-index-<version>.vsix
 | `notebookCellIndex.alignment` | `"left"` \| `"right"` | `"left"` | Which side of the cell status bar the badge sits on. |
 | `notebookCellIndex.hideWhenSingle` | boolean | `false` | Hide the badge on notebooks with 0 or 1 displayed cells. |
 | `notebookCellIndex.showCodeNumbers` | boolean | `true` | Number code cells. |
-| `notebookCellIndex.showMarkdownNumbers` | boolean | `false` | Number markdown cells (replaces the legacy `includeMarkdownCells`). |
+| `notebookCellIndex.showMarkdownNumbers` | boolean | `false` | Number markdown cells. |
 | `notebookCellIndex.resetCounterOnSection` | `"none"` \| `"h1"` \| `"h1-h2"` | `"none"` | Restart the counter at every H1 / H1+H2 markdown cell. |
 
 ### Custom format tokens

@@ -2,7 +2,7 @@
   "name": "notebook-cell-index",
   "displayName": "Notebook Cell Index",
   "description": "Shows sequential cell numbers (Cell 1, Cell 2, ...) in the status bar of notebook cells. Custom format templates, alignment, per-kind toggles, and section-based counter resets.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publisher": "KolosKerekes",
   "license": "MIT",
   "author": {
@@ -99,12 +99,6 @@
           ],
           "default": "none",
           "description": "Restart the counter when a markdown cell starts with the configured heading level. Combine with `customFormat` and the `{section}` token to display hierarchical labels like '1.3'."
-        },
-        "notebookCellIndex.includeMarkdownCells": {
-          "type": "boolean",
-          "default": false,
-          "deprecationMessage": "Use `notebookCellIndex.showMarkdownNumbers` instead.",
-          "description": "Legacy alias for `showMarkdownNumbers`. When the new setting is unset, this value is used as its default."
         }
       }
     }
