@@ -1,24 +1,86 @@
 {
-  "name": "notebook-cell-numbers",
-  "displayName": "Notebook Cell Numbers",
-  "description": "Shows sequential cell numbers (Cell 1, Cell 2, ...) in the status bar of Jupyter notebook code cells",
-  "version": "0.1.0",
-  "publisher": "kerekes",
-  "engines": {
-    "vscode": "^1.56.0"
+  "name": "notebook-cell-index",
+  "displayName": "Notebook Cell Index",
+  "description": "Shows sequential cell numbers (Cell 1, Cell 2, ...) in the status bar of notebook cells. Optionally includes markdown cells in the numbering.",
+  "version": "0.2.0",
+  "publisher": "KolosKerekes",
+  "license": "MIT",
+  "author": {
+    "name": "Kolos Kerekes"
   },
-  "categories": ["Notebooks"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kolos-kerekes/notebook-cell-index.git"
+  },
+  "homepage": "https://github.com/kolos-kerekes/notebook-cell-index#readme",
+  "bugs": {
+    "url": "https://github.com/kolos-kerekes/notebook-cell-index/issues"
+  },
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1f1f1f",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Notebooks",
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "notebook",
+    "jupyter",
+    "cell",
+    "index",
+    "number",
+    "numbering",
+    "status bar",
+    "ipynb"
+  ],
   "activationEvents": [
-    "onNotebook:jupyter-notebook"
+    "onNotebook:*"
   ],
   "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Notebook Cell Index",
+      "properties": {
+        "notebookCellIndex.format": {
+          "type": "string",
+          "enum": ["Cell N", "#N", "[N]"],
+          "enumDescriptions": [
+            "Label format: 'Cell 1', 'Cell 2', ...",
+            "Compact: '#1', '#2', ...",
+            "Bracketed: '[1]', '[2]', ..."
+          ],
+          "default": "Cell N",
+          "description": "Label format for notebook cell numbers."
+        },
+        "notebookCellIndex.showTotal": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show the total cell count alongside the index (e.g. 'Cell 2/5')."
+        },
+        "notebookCellIndex.includeMarkdownCells": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include markdown cells in the numbering. When enabled, markdown cells also display a number and count toward the total."
+        }
+      }
+    }
+  },
   "scripts": {
-    "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --minify",
     "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
-    "package": "npx @vscode/vsce package"
+    "typecheck": "tsc --noEmit",
+    "vscode:prepublish": "npm run typecheck && npm run compile",
+    "package": "npx @vscode/vsce package",
+    "publish": "npx @vscode/vsce publish"
   },
   "devDependencies": {
-    "@types/vscode": "^1.56.0",
+    "@types/vscode": "^1.74.0",
     "esbuild": "^0.20.0",
     "typescript": "^5.0.0"
   }

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f"/>
+      <stop offset="100%" style="stop-color:#0d1b2a"/>
+    </linearGradient>
+    <linearGradient id="cell" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a5a8a"/>
+      <stop offset="100%" style="stop-color:#1e3a5f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4fc3f7"/>
+      <stop offset="100%" style="stop-color:#0288d1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect x="8" y="8" width="240" height="240" rx="32" ry="32" fill="url(#bg)"/>
+
+  <!-- Cell 1 -->
+  <rect x="32" y="32" width="192" height="52" rx="8" ry="8" fill="url(#cell)" stroke="#4fc3f7" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Number badge 1 -->
+  <rect x="42" y="42" width="32" height="32" rx="6" ry="6" fill="url(#accent)"/>
+  <text x="58" y="66" font-family="Consolas, monospace" font-size="20" font-weight="bold" fill="#fff" text-anchor="middle">1</text>
+  <!-- Code lines -->
+  <rect x="84" y="50" width="80" height="6" rx="3" fill="#4fc3f7" opacity="0.5"/>
+  <rect x="84" y="62" width="50" height="6" rx="3" fill="#4fc3f7" opacity="0.3"/>
+
+  <!-- Cell 2 -->
+  <rect x="32" y="100" width="192" height="52" rx="8" ry="8" fill="url(#cell)" stroke="#4fc3f7" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Number badge 2 -->
+  <rect x="42" y="110" width="32" height="32" rx="6" ry="6" fill="url(#accent)"/>
+  <text x="58" y="134" font-family="Consolas, monospace" font-size="20" font-weight="bold" fill="#fff" text-anchor="middle">2</text>
+  <!-- Code lines -->
+  <rect x="84" y="118" width="120" height="6" rx="3" fill="#4fc3f7" opacity="0.5"/>
+  <rect x="84" y="130" width="70" height="6" rx="3" fill="#4fc3f7" opacity="0.3"/>
+
+  <!-- Cell 3 -->
+  <rect x="32" y="168" width="192" height="52" rx="8" ry="8" fill="url(#cell)" stroke="#4fc3f7" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Number badge 3 -->
+  <rect x="42" y="178" width="32" height="32" rx="6" ry="6" fill="url(#accent)"/>
+  <text x="58" y="202" font-family="Consolas, monospace" font-size="20" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+  <!-- Code lines -->
+  <rect x="84" y="186" width="95" height="6" rx="3" fill="#4fc3f7" opacity="0.5"/>
+  <rect x="84" y="198" width="60" height="6" rx="3" fill="#4fc3f7" opacity="0.3"/>
+</svg>

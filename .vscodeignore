@@ -2,6 +2,16 @@ src/
 node_modules/
 tsconfig.json
 .gitignore
+.gitattributes
+.github/
 package-lock.json
 docs/
 .vscode/
+.claude/
+icon.svg
+*.vsix
+.editorconfig
+CONTRIBUTING.md
+**/*.map
+**/*.ts
+!dist/**
