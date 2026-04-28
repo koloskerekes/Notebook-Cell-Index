@@ -4,6 +4,12 @@ All notable changes to **Notebook Cell Index** are documented here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - 2026-04-28
+
+### Added
+- **Default keybinding `Ctrl+K G` (Mac: `Cmd+K G`)** for the `Jump to Cell…` command, scoped to `notebookEditorFocused` so it never fires outside a notebook.
+- **Section grouping in the cell picker.** When `resetCounterOnSection` is enabled, the quick-pick now shows a separator before each section, labeled with the heading text (or `Section N` if the heading is empty). Makes a 100-cell notebook scannable.
+
 ## [0.5.0] - 2026-04-28
 
 ### Added

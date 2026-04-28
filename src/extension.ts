@@ -224,8 +224,9 @@ async function openCellPicker(): Promise<void> {
   const cfg = loadConfig();
   const cells = editor.notebook.getCells();
 
-  type Item = vscode.QuickPickItem & { cell: vscode.NotebookCell };
+  type Item = vscode.QuickPickItem & { cell?: vscode.NotebookCell };
   const items: Item[] = [];
+  let lastSection = -1;
   for (const cell of cells) {
     if (!counts(cell, cfg)) {
       continue;
@@ -237,6 +238,13 @@ async function openCellPicker(): Promise<void> {
     const template = resolveTemplate(cfg);
     if (templateRequiresExecution(template) && typeof cell.executionSummary?.executionOrder !== 'number') {
       continue;
+    }
+    if (cfg.resetMode !== 'none' && pos.section !== lastSection) {
+      items.push({
+        label: pos.sectionTitle || `Section ${pos.section}`,
+        kind: vscode.QuickPickItemKind.Separator,
+      });
+      lastSection = pos.section;
     }
     const label = formatLabel(template, pos, cell);
     items.push({
@@ -254,7 +262,7 @@ async function openCellPicker(): Promise<void> {
   const originalSelection = editor.selection;
   const originalVisible = editor.visibleRanges.length > 0 ? editor.visibleRanges[0] : undefined;
   const ctx = getActiveSelection();
-  const currentItem = items.find(i => i.cell === ctx?.cell);
+  const currentItem = items.find(i => i.cell !== undefined && i.cell === ctx?.cell);
 
   const picker = vscode.window.createQuickPick<Item>();
   picker.items = items;
@@ -267,14 +275,14 @@ async function openCellPicker(): Promise<void> {
   let accepted = false;
 
   picker.onDidChangeActive(active => {
-    if (active.length > 0) {
+    if (active.length > 0 && active[0].cell) {
       revealCell(editor, active[0].cell, false);
     }
   });
   picker.onDidAccept(() => {
     accepted = true;
     const sel = picker.selectedItems[0] ?? picker.activeItems[0];
-    if (sel) {
+    if (sel?.cell) {
       revealCell(editor, sel.cell, true);
     }
     picker.hide();

@@ -9,7 +9,7 @@ Number every cell of every notebook in VS Code. Click any badge to jump across t
 ## Features
 
 - **Status-bar numbering** on every code cell — no clutter, no UI overrides
-- **Click-to-jump cell picker** — click any cell badge to open a quick-pick of all cells, with live preview as you arrow through it
+- **Click-to-jump cell picker** (`Ctrl+K G` in a notebook) — open a quick-pick of all cells with live preview as you arrow through it; sections become visual groups when `resetCounterOnSection` is on
 - **Active-cell window status item** — a `Cell N` indicator in the bottom status bar tracks the focused cell
 - **Custom format templates** — write your own label like `Cell {n}/{total}`, `{section}.{n}`, or `In[{exec}]`
 - **Section-based counter resets** — restart numbering at every `#` or `##` markdown cell for `1.3`-style hierarchies
